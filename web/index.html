@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>每日碳排放計算器 | 台灣官方開放資料數據庫</title>
-  <meta name="description" content="結合台灣環境部氣候變遷署與經濟部能源署官方開放資料，動態算您的每日生活碳排放量。">
+  <title>每日碳排放計算器 | 臺灣高中生專屬版</title>
+  <meta name="description" content="專為臺灣高中生設計的生活碳排放計算器，以直覺單位（趟、杯、個、張、小時）試算每日生活碳足跡。">
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,16 +22,16 @@
     <div class="header-container">
       <div class="brand">
         <div class="brand-icon">
-          <i class="fa-solid fa-leaf"></i>
+          <i class="fa-solid fa-graduation-cap"></i>
         </div>
         <div class="brand-text">
-          <h1>每日碳排放計算器</h1>
-          <span class="brand-subtitle">Taiwan Open Data Carbon Pipeline</span>
+          <h1>每日碳排放計算器 <span class="badge-hs">臺灣高中生專屬版 🎒</span></h1>
+          <span class="brand-subtitle">Taiwan High School Life Carbon Calculator</span>
         </div>
       </div>
       <nav class="header-nav">
         <button class="nav-btn active" data-target="tab-calculator" id="btn-nav-calc">
-          <i class="fa-solid fa-calculator"></i> 每日碳排放計算
+          <i class="fa-solid fa-calculator"></i> 高中生一日碳排計算
         </button>
         <button class="nav-btn" data-target="tab-database" id="btn-nav-db">
           <i class="fa-solid fa-database"></i> 官方排放係數庫
@@ -46,144 +46,178 @@
   <!-- Main Content Wrapper -->
   <main class="main-container">
 
-    <!-- TAB 1: 每日碳排放計算器 (Calculator View) -->
+    <!-- TAB 1: 高中生每日碳排放計算器 (Calculator View) -->
     <section id="tab-calculator" class="tab-content active">
       <div class="calculator-grid">
         <!-- Input Form Section -->
         <div class="calc-inputs-card glass-panel">
           <div class="card-header">
-            <h2><i class="fa-solid fa-list-check text-emerald"></i> 今日生活情境輸入</h2>
-            <p class="subtitle">輸入您今日的生活活動數量，實時計算公斤二氧化碳當量 (kg CO2e)</p>
+            <h2><i class="fa-solid fa-school text-emerald"></i> 高中生一日生活情境輸入</h2>
+            <p class="subtitle">依據高中生真實一日作息設計，填入直覺次數與數量即可自動換算 kg CO2e</p>
           </div>
 
           <div class="scenario-accordion">
-            <!-- Scenario 1: 交通運輸 -->
+            <!-- Scenario 1: 上下學交通 -->
             <div class="scenario-group">
               <div class="scenario-header">
-                <span class="scen-icon">🚗</span>
-                <span class="scen-title">交通運輸 (Transportation)</span>
+                <span class="scen-icon">🎒</span>
+                <span class="scen-title">1. 上下學交通 (Commute)</span>
               </div>
               <div class="input-row-grid">
                 <div class="input-field">
-                  <label for="input-mrt">台北捷運 (公里)</label>
+                  <label for="input-walk-bike">🚶‍♂️ 步行 / YouBike (趟)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-mrt" min="0" value="0" step="1">
-                    <span class="unit-tag">km</span>
+                    <input type="number" id="input-walk-bike" min="0" value="2" step="1">
+                    <span class="unit-tag">趟/日</span>
                   </div>
+                  <span class="hint-text">零碳排放！</span>
                 </div>
                 <div class="input-field">
-                  <label for="input-hsr">台灣高鐵 (公里)</label>
+                  <label for="input-bus">🚌 公車上下學 (趟)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-hsr" min="0" value="0" step="1">
-                    <span class="unit-tag">km</span>
+                    <input type="number" id="input-bus" min="0" value="0" step="1">
+                    <span class="unit-tag">趟/日</span>
                   </div>
+                  <span class="hint-text">約 0.40 kg/趟</span>
                 </div>
                 <div class="input-field">
-                  <label for="input-scooter">燃油機車 (公里)</label>
+                  <label for="input-mrt-train">🚆 捷運 / 台鐵 (趟)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-scooter" min="0" value="0" step="1">
-                    <span class="unit-tag">km</span>
+                    <input type="number" id="input-mrt-train" min="0" value="0" step="1">
+                    <span class="unit-tag">趟/日</span>
                   </div>
+                  <span class="hint-text">約 0.42 kg/趟</span>
                 </div>
                 <div class="input-field">
-                  <label for="input-car">汽油轎車 (公里)</label>
+                  <label for="input-scooter-ride">🛵 家長機車接送 (趟)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-car" min="0" value="0" step="1">
-                    <span class="unit-tag">km</span>
+                    <input type="number" id="input-scooter-ride" min="0" value="0" step="1">
+                    <span class="unit-tag">趟/日</span>
                   </div>
+                  <span class="hint-text">約 0.26 kg/趟</span>
+                </div>
+                <div class="input-field">
+                  <label for="input-car-ride">🚗 家長開車接送 (趟)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-car-ride" min="0" value="0" step="1">
+                    <span class="unit-tag">趟/日</span>
+                  </div>
+                  <span class="hint-text">約 0.86 kg/趟</span>
                 </div>
               </div>
             </div>
 
-            <!-- Scenario 2: 飲食習慣 -->
+            <!-- Scenario 2: 校園與日常飲食 -->
             <div class="scenario-group">
               <div class="scenario-header">
                 <span class="scen-icon">🍱</span>
-                <span class="scen-title">飲食習慣 (Food & Beverage)</span>
+                <span class="scen-title">2. 校園與日常飲食 (Meals & Drinks)</span>
               </div>
               <div class="input-row-grid">
                 <div class="input-field">
-                  <label for="input-bento">排骨便當 (個)</label>
+                  <label for="input-school-bento">🍱 學校便當/營養午餐 (個)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-bento" min="0" value="1" step="1">
+                    <input type="number" id="input-school-bento" min="0" value="1" step="1">
                     <span class="unit-tag">個</span>
                   </div>
+                  <span class="hint-text">含主菜排骨/雞腿</span>
                 </div>
                 <div class="input-field">
-                  <label for="input-coffee">現煮拿鐵/美式 (杯)</label>
+                  <label for="input-boba-drink">🥤 珍珠奶茶/手搖飲/超商飲料 (杯)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-coffee" min="0" value="1" step="1">
+                    <input type="number" id="input-boba-drink" min="0" value="1" step="1">
                     <span class="unit-tag">杯</span>
                   </div>
+                  <span class="hint-text">約 0.35 kg/杯</span>
                 </div>
                 <div class="input-field">
-                  <label for="input-milk">鮮乳 (1000ml/瓶)</label>
+                  <label for="input-snack-bread">🥐 合作社麵包 / 飯糰 (個)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-milk" min="0" value="0" step="1">
-                    <span class="unit-tag">瓶</span>
+                    <input type="number" id="input-snack-bread" min="0" value="1" step="1">
+                    <span class="unit-tag">個</span>
                   </div>
+                  <span class="hint-text">約 0.38 kg/個</span>
                 </div>
                 <div class="input-field">
-                  <label for="input-water">包裝礦泉水 (瓶)</label>
+                  <label for="input-meat-snack">🍗 點心雞排 / 炸雞塊 (份)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-water" min="0" value="0" step="1">
-                    <span class="unit-tag">瓶</span>
+                    <input type="number" id="input-meat-snack" min="0" value="0" step="1">
+                    <span class="unit-tag">份</span>
+                  </div>
+                  <span class="hint-text">約 0.95 kg/份</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario 3: 學習與教室能源 -->
+            <div class="scenario-group">
+              <div class="scenario-header">
+                <span class="scen-icon">💻</span>
+                <span class="scen-title">3. 學習與教室能源 (Study & Energy)</span>
+              </div>
+              <div class="input-row-grid">
+                <div class="input-field">
+                  <label for="input-laptop">💻 平板 / 筆電自主學習 (小時)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-laptop" min="0" value="2" step="0.5">
+                    <span class="unit-tag">小時</span>
+                  </div>
+                  <span class="hint-text">含數位查資料寫作業</span>
+                </div>
+                <div class="input-field">
+                  <label for="input-phone-charge">📱 手機充飽電次數 (次)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-phone-charge" min="0" value="1" step="1">
+                    <span class="unit-tag">次</span>
+                  </div>
+                  <span class="hint-text">全天充飽一次約 0.015 kg</span>
+                </div>
+                <div class="input-field">
+                  <label for="input-classroom-ac">❄️ 教室/晚自習吹冷氣時間 (小時)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-classroom-ac" min="0" value="4" step="1">
+                    <span class="unit-tag">小時</span>
+                  </div>
+                  <span class="hint-text">學生分攤平均約 0.12 kg/hr</span>
+                </div>
+                <div class="input-field">
+                  <label for="input-study-lamp">💡 房間檯燈晚自習時間 (小時)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-study-lamp" min="0" value="2" step="0.5">
+                    <span class="unit-tag">小時</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Scenario 3: 居家能源 -->
+            <!-- Scenario 4: 學習用品與垃圾廢棄物 -->
             <div class="scenario-group">
               <div class="scenario-header">
-                <span class="scen-icon">⚡</span>
-                <span class="scen-title">居家能源 (Energy Consumption)</span>
+                <span class="scen-icon">📝</span>
+                <span class="scen-title">4. 學習用品與廢棄物 (Supplies & Waste)</span>
               </div>
               <div class="input-row-grid">
                 <div class="input-field">
-                  <label for="input-electricity">台電電力 (度/kWh)</label>
+                  <label for="input-exam-paper">📝 考卷 / 講義 / 影印紙 (張)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-electricity" min="0" value="5" step="0.5">
-                    <span class="unit-tag">度</span>
+                    <input type="number" id="input-exam-paper" min="0" value="5" step="1">
+                    <span class="unit-tag">張</span>
                   </div>
-                  <span class="hint-text">能源署最新係數: <strong id="lbl-elec-factor">0.467</strong> kg/度</span>
+                  <span class="hint-text">每張約 0.009 kg</span>
                 </div>
                 <div class="input-field">
-                  <label for="input-tapwater">自來水 (度/立方公尺)</label>
+                  <label for="input-plastic-bottle">🧃 寶特瓶 / 飲料瓶 (瓶)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-tapwater" min="0" value="0.5" step="0.1">
-                    <span class="unit-tag">度</span>
+                    <input type="number" id="input-plastic-bottle" min="0" value="1" step="1">
+                    <span class="unit-tag">瓶</span>
                   </div>
+                  <span class="hint-text">含回收處置</span>
                 </div>
                 <div class="input-field">
-                  <label for="input-gas">天然氣/瓦斯 (立方公尺)</label>
+                  <label for="input-hs-trash">🗑️ 校園生活一般垃圾 (小包)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-gas" min="0" value="0" step="0.1">
-                    <span class="unit-tag">m³</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Scenario 4: 消費與廢棄物 -->
-            <div class="scenario-group">
-              <div class="scenario-header">
-                <span class="scen-icon">♻️</span>
-                <span class="scen-title">消費與廢棄物 (Waste & Consumption)</span>
-              </div>
-              <div class="input-row-grid">
-                <div class="input-field">
-                  <label for="input-paper">A4 影印紙 (包/500張)</label>
-                  <div class="input-wrapper">
-                    <input type="number" id="input-paper" min="0" value="0" step="1">
+                    <input type="number" id="input-hs-trash" min="0" value="1" step="1">
                     <span class="unit-tag">包</span>
-                  </div>
-                </div>
-                <div class="input-field">
-                  <label for="input-trash">一般生活垃圾 (公斤)</label>
-                  <div class="input-wrapper">
-                    <input type="number" id="input-trash" min="0" value="0.5" step="0.1">
-                    <span class="unit-tag">kg</span>
                   </div>
                 </div>
               </div>
@@ -194,8 +228,8 @@
         <!-- Dashboard Summary & Chart Section -->
         <div class="calc-summary-card glass-panel">
           <div class="card-header">
-            <h2><i class="fa-solid fa-chart-pie text-emerald"></i> 今日碳足跡總計</h2>
-            <p class="subtitle">依據官方最新標準係數實時試算</p>
+            <h2><i class="fa-solid fa-chart-pie text-emerald"></i> 今日高中生碳足跡總計</h2>
+            <p class="subtitle">依據臺灣官方最新標準係數試算</p>
           </div>
 
           <div class="total-result-box">
@@ -209,7 +243,7 @@
                 <div class="progress-bar-fill" id="co2-progress-fill" style="width: 40%;"></div>
               </div>
               <div class="progress-labels">
-                <span>台灣人均每日目標 (~5.5 kg)</span>
+                <span>臺灣高中生建議每日目標 (~3.5 kg)</span>
                 <span id="progress-percent-lbl">45%</span>
               </div>
             </div>
@@ -217,32 +251,32 @@
 
           <!-- Breakdown Bar Visual -->
           <div class="breakdown-section">
-            <h3><i class="fa-solid fa-chart-simple"></i> 生活場景排放佔比</h3>
+            <h3><i class="fa-solid fa-chart-simple"></i> 四大校園生活情境佔比</h3>
             <div class="category-bars">
               <div class="cat-bar-item">
                 <div class="cat-bar-header">
-                  <span>🚗 交通運輸</span>
+                  <span>🎒 上下學交通</span>
                   <span id="val-cat-transport">0.00 kg</span>
                 </div>
                 <div class="bar-track"><div class="bar-fill bg-transport" id="bar-transport" style="width: 0%;"></div></div>
               </div>
               <div class="cat-bar-item">
                 <div class="cat-bar-header">
-                  <span>🍱 飲食習慣</span>
+                  <span>🍱 校園飲食</span>
                   <span id="val-cat-food">0.00 kg</span>
                 </div>
                 <div class="bar-track"><div class="bar-fill bg-food" id="bar-food" style="width: 0%;"></div></div>
               </div>
               <div class="cat-bar-item">
                 <div class="cat-bar-header">
-                  <span>⚡ 居家能源</span>
+                  <span>💻 學習與教室能源</span>
                   <span id="val-cat-energy">0.00 kg</span>
                 </div>
                 <div class="bar-track"><div class="bar-fill bg-energy" id="bar-energy" style="width: 0%;"></div></div>
               </div>
               <div class="cat-bar-item">
                 <div class="cat-bar-header">
-                  <span>♻️ 消費與廢棄物</span>
+                  <span>📝 學習用品與廢棄物</span>
                   <span id="val-cat-waste">0.00 kg</span>
                 </div>
                 <div class="bar-track"><div class="bar-fill bg-waste" id="bar-waste" style="width: 0%;"></div></div>
@@ -254,8 +288,8 @@
           <div class="eco-advice-card" id="eco-advice-card">
             <i class="fa-solid fa-lightbulb advice-icon"></i>
             <div>
-              <h4 id="advice-title">減碳溫馨提示</h4>
-              <p id="advice-desc">搭乘台北捷運每公里僅產生 0.042 kg CO2e，相比開車可減少近 75% 的碳排放量！</p>
+              <h4 id="advice-title">高中生低碳行動提示</h4>
+              <p id="advice-desc">騎 YouBike 或搭公車上下學，比讓家人開車接送每趟節省超過 0.4 kg 碳排放量！</p>
             </div>
           </div>
         </div>
@@ -268,14 +302,14 @@
         <div class="db-controls">
           <div class="search-box">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="db-search-input" placeholder="搜尋官方產品、廠商或係數關鍵字 (如: 高鐵, 鮮乳, 便當)...">
+            <input type="text" id="db-search-input" placeholder="搜尋官方產品、廠商或係數關鍵字 (如: 公車, 捷運, 鮮乳, 便當, 影印紙)...">
           </div>
           <div class="category-tabs" id="db-category-tabs">
             <button class="cat-tab-btn active" data-cat="all">全部 <span class="badge" id="badge-all">0</span></button>
-            <button class="cat-tab-btn" data-cat="transportation">🚗 交通運輸 <span class="badge" id="badge-transport">0</span></button>
-            <button class="cat-tab-btn" data-cat="food">🍱 飲食習慣 <span class="badge" id="badge-food">0</span></button>
-            <button class="cat-tab-btn" data-cat="energy">⚡ 居家能源 <span class="badge" id="badge-energy">0</span></button>
-            <button class="cat-tab-btn" data-cat="waste_consumption">♻️ 消費廢棄物 <span class="badge" id="badge-waste">0</span></button>
+            <button class="cat-tab-btn" data-cat="transportation">🎒 上下學交通 <span class="badge" id="badge-transport">0</span></button>
+            <button class="cat-tab-btn" data-cat="food">🍱 校園飲食 <span class="badge" id="badge-food">0</span></button>
+            <button class="cat-tab-btn" data-cat="energy">💻 學習與教室能源 <span class="badge" id="badge-energy">0</span></button>
+            <button class="cat-tab-btn" data-cat="waste_consumption">📝 學習用品與廢棄物 <span class="badge" id="badge-waste">0</span></button>
           </div>
         </div>
 
@@ -371,7 +405,7 @@
   </main>
 
   <footer class="app-footer">
-    <p>🌿 每日碳排放計算器 | 台灣官方開放資料標準數據庫 pipeline | 部署至 GitHub Actions</p>
+    <p>🎒 臺灣高中生每日碳排放計算器 | 環境部與能源署官方開放資料標準 Pipeline | 部署至 GitHub Actions</p>
   </footer>
 
   <script src="app.js"></script>

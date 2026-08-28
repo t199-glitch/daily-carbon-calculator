@@ -90,13 +90,13 @@ async function loadCarbonDatabase() {
   updateCategoryBadges();
 }
 
-// Calculator Logic
+// Calculator Logic for High School Student Scenarios
 function initCalculatorListeners() {
   const inputIds = [
-    'input-mrt', 'input-hsr', 'input-scooter', 'input-car',
-    'input-bento', 'input-coffee', 'input-milk', 'input-water',
-    'input-electricity', 'input-tapwater', 'input-gas',
-    'input-paper', 'input-trash'
+    'input-walk-bike', 'input-bus', 'input-mrt-train', 'input-scooter-ride', 'input-car-ride',
+    'input-school-bento', 'input-boba-drink', 'input-snack-bread', 'input-meat-snack',
+    'input-laptop', 'input-phone-charge', 'input-classroom-ac', 'input-study-lamp',
+    'input-exam-paper', 'input-plastic-bottle', 'input-hs-trash'
   ];
 
   inputIds.forEach(id => {
@@ -112,25 +112,28 @@ function calculateTotalFootprint() {
 
   const elecCoe = carbonDatabase?.metadata?.electricity_coefficient || 0.467;
 
-  // Breakdown by scenario
+  // High School Life Scenario Emission Calculations (in kg CO2e)
   const catEmissions = {
     transportation: 
-      (getVal('input-mrt') * 0.042) +
-      (getVal('input-hsr') * 0.034) +
-      (getVal('input-scooter') * 0.052) +
-      (getVal('input-car') * 0.173),
+      (getVal('input-walk-bike') * 0.0) +
+      (getVal('input-bus') * 0.40) +
+      (getVal('input-mrt-train') * 0.42) +
+      (getVal('input-scooter-ride') * 0.26) +
+      (getVal('input-car-ride') * 0.865),
     food:
-      (getVal('input-bento') * 1.380) +
-      (getVal('input-coffee') * 0.550) +
-      (getVal('input-milk') * 1.620) +
-      (getVal('input-water') * 0.180),
+      (getVal('input-school-bento') * 1.380) +
+      (getVal('input-boba-drink') * 0.350) +
+      (getVal('input-snack-bread') * 0.380) +
+      (getVal('input-meat-snack') * 0.950),
     energy:
-      (getVal('input-electricity') * elecCoe) +
-      (getVal('input-tapwater') * 0.156) +
-      (getVal('input-gas') * 2.100),
+      (getVal('input-laptop') * 0.023) +
+      (getVal('input-phone-charge') * 0.015) +
+      (getVal('input-classroom-ac') * 0.120) +
+      (getVal('input-study-lamp') * 0.020),
     waste_consumption:
-      (getVal('input-paper') * 4.600) +
-      (getVal('input-trash') * 0.420)
+      (getVal('input-exam-paper') * 0.0092) +
+      (getVal('input-plastic-bottle') * 0.085) +
+      (getVal('input-hs-trash') * 0.210)
   };
 
   const total = Object.values(catEmissions).reduce((a, b) => a + b, 0);
@@ -138,8 +141,8 @@ function calculateTotalFootprint() {
   // Update total display
   document.getElementById('total-co2-val').innerText = total.toFixed(2);
 
-  // Progress Bar (Taiwan benchmark ~5.5 kg CO2e / day)
-  const target = 5.5;
+  // High School Student Daily Carbon Target (~3.5 kg CO2e / day)
+  const target = 3.5;
   const percent = Math.min(Math.round((total / target) * 100), 100);
   const fill = document.getElementById('co2-progress-fill');
   fill.style.width = `${percent}%`;
@@ -160,6 +163,7 @@ function calculateTotalFootprint() {
   // Dynamic Advice Update
   updateAdviceTip(catEmissions);
 }
+
 
 function updateCategoryBar(barId, labelId, catValue, totalValue) {
   document.getElementById(labelId).innerText = `${catValue.toFixed(2)} kg`;
