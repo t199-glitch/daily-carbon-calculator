@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日碳排放計算器 | 台灣官方開放資料數據庫</title>
+  <meta name="description" content="結合台灣環境部氣候變遷署與經濟部能源署官方開放資料，動態試算您的每日生活碳排放量。">
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="web/styles.css">
+</head>
+<body>
+  <!-- Background Glow Effects -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
+  <!-- Header Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div class="brand-text">
+          <h1>每日碳排放計算器</h1>
+          <span class="brand-subtitle">Taiwan Open Data Carbon Pipeline</span>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <button class="nav-btn active" data-target="tab-calculator" id="btn-nav-calc">
+          <i class="fa-solid fa-calculator"></i> 每日碳排放計算
+        </button>
+        <button class="nav-btn" data-target="tab-database" id="btn-nav-db">
+          <i class="fa-solid fa-database"></i> 官方排放係數庫
+        </button>
+        <button class="nav-btn" data-target="tab-pipeline" id="btn-nav-pipeline">
+          <i class="fa-solid fa-diagram-project"></i> 管線與 API 狀態
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-container">
+
+    <!-- TAB 1: 每日碳排放計算器 (Calculator View) -->
+    <section id="tab-calculator" class="tab-content active">
+      <div class="calculator-grid">
+        <!-- Input Form Section -->
+        <div class="calc-inputs-card glass-panel">
+          <div class="card-header">
+            <h2><i class="fa-solid fa-list-check text-emerald"></i> 今日生活情境輸入</h2>
+            <p class="subtitle">輸入您今日的生活活動數量，實時計算公斤二氧化碳當量 (kg CO2e)</p>
+          </div>
+
+          <div class="scenario-accordion">
+            <!-- Scenario 1: 交通運輸 -->
+            <div class="scenario-group">
+              <div class="scenario-header">
+                <span class="scen-icon">🚗</span>
+                <span class="scen-title">交通運輸 (Transportation)</span>
+              </div>
+              <div class="input-row-grid">
+                <div class="input-field">
+                  <label for="input-mrt">台北捷運 (公里)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-mrt" min="0" value="0" step="1">
+                    <span class="unit-tag">km</span>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <label for="input-hsr">台灣高鐵 (公里)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-hsr" min="0" value="0" step="1">
+                    <span class="unit-tag">km</span>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <label for="input-scooter">燃油機車 (公里)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-scooter" min="0" value="0" step="1">
+                    <span class="unit-tag">km</span>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <label for="input-car">汽油轎車 (公里)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-car" min="0" value="0" step="1">
+                    <span class="unit-tag">km</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario 2: 飲食習慣 -->
+            <div class="scenario-group">
+              <div class="scenario-header">
+                <span class="scen-icon">🍱</span>
+                <span class="scen-title">飲食習慣 (Food & Beverage)</span>
+              </div>
+              <div class="input-row-grid">
+                <div class="input-field">
+                  <label for="input-bento">排骨便當 (個)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-bento" min="0" value="1" step="1">
+                    <span class="unit-tag">個</span>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <label for="input-coffee">現煮拿鐵/美式 (杯)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-coffee" min="0" value="1" step="1">
+                    <span class="unit-tag">杯</span>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <label for="input-milk">鮮乳 (1000ml/瓶)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-milk" min="0" value="0" step="1">
+                    <span class="unit-tag">瓶</span>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <label for="input-water">包裝礦泉水 (瓶)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-water" min="0" value="0" step="1">
+                    <span class="unit-tag">瓶</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario 3: 居家能源 -->
+            <div class="scenario-group">
+              <div class="scenario-header">
+                <span class="scen-icon">⚡</span>
+                <span class="scen-title">居家能源 (Energy Consumption)</span>
+              </div>
+              <div class="input-row-grid">
+                <div class="input-field">
+                  <label for="input-electricity">台電電力 (度/kWh)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-electricity" min="0" value="5" step="0.5">
+                    <span class="unit-tag">度</span>
+                  </div>
+                  <span class="hint-text">能源署最新係數: <strong id="lbl-elec-factor">0.467</strong> kg/度</span>
+                </div>
+                <div class="input-field">
+                  <label for="input-tapwater">自來水 (度/立方公尺)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-tapwater" min="0" value="0.5" step="0.1">
+                    <span class="unit-tag">度</span>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <label for="input-gas">天然氣/瓦斯 (立方公尺)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-gas" min="0" value="0" step="0.1">
+                    <span class="unit-tag">m³</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scenario 4: 消費與廢棄物 -->
+            <div class="scenario-group">
+              <div class="scenario-header">
+                <span class="scen-icon">♻️</span>
+                <span class="scen-title">消費與廢棄物 (Waste & Consumption)</span>
+              </div>
+              <div class="input-row-grid">
+                <div class="input-field">
+                  <label for="input-paper">A4 影印紙 (包/500張)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-paper" min="0" value="0" step="1">
+                    <span class="unit-tag">包</span>
+                  </div>
+                </div>
+                <div class="input-field">
+                  <label for="input-trash">一般生活垃圾 (公斤)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-trash" min="0" value="0.5" step="0.1">
+                    <span class="unit-tag">kg</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Summary & Chart Section -->
+        <div class="calc-summary-card glass-panel">
+          <div class="card-header">
+            <h2><i class="fa-solid fa-chart-pie text-emerald"></i> 今日碳足跡總計</h2>
+            <p class="subtitle">依據官方最新標準係數實時試算</p>
+          </div>
+
+          <div class="total-result-box">
+            <span class="result-label">今日預估總排放量</span>
+            <div class="result-number">
+              <span id="total-co2-val">0.00</span>
+              <span class="result-unit">kg CO2e</span>
+            </div>
+            <div class="target-progress">
+              <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="co2-progress-fill" style="width: 40%;"></div>
+              </div>
+              <div class="progress-labels">
+                <span>台灣人均每日目標 (~5.5 kg)</span>
+                <span id="progress-percent-lbl">45%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Breakdown Bar Visual -->
+          <div class="breakdown-section">
+            <h3><i class="fa-solid fa-chart-simple"></i> 生活場景排放佔比</h3>
+            <div class="category-bars">
+              <div class="cat-bar-item">
+                <div class="cat-bar-header">
+                  <span>🚗 交通運輸</span>
+                  <span id="val-cat-transport">0.00 kg</span>
+                </div>
+                <div class="bar-track"><div class="bar-fill bg-transport" id="bar-transport" style="width: 0%;"></div></div>
+              </div>
+              <div class="cat-bar-item">
+                <div class="cat-bar-header">
+                  <span>🍱 飲食習慣</span>
+                  <span id="val-cat-food">0.00 kg</span>
+                </div>
+                <div class="bar-track"><div class="bar-fill bg-food" id="bar-food" style="width: 0%;"></div></div>
+              </div>
+              <div class="cat-bar-item">
+                <div class="cat-bar-header">
+                  <span>⚡ 居家能源</span>
+                  <span id="val-cat-energy">0.00 kg</span>
+                </div>
+                <div class="bar-track"><div class="bar-fill bg-energy" id="bar-energy" style="width: 0%;"></div></div>
+              </div>
+              <div class="cat-bar-item">
+                <div class="cat-bar-header">
+                  <span>♻️ 消費與廢棄物</span>
+                  <span id="val-cat-waste">0.00 kg</span>
+                </div>
+                <div class="bar-track"><div class="bar-fill bg-waste" id="bar-waste" style="width: 0%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Eco Advice Box -->
+          <div class="eco-advice-card" id="eco-advice-card">
+            <i class="fa-solid fa-lightbulb advice-icon"></i>
+            <div>
+              <h4 id="advice-title">減碳溫馨提示</h4>
+              <p id="advice-desc">搭乘台北捷運每公里僅產生 0.042 kg CO2e，相比開車可減少近 75% 的碳排放量！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 官方排放係數庫 (Database Explorer View) -->
+    <section id="tab-database" class="tab-content">
+      <div class="db-explorer-panel glass-panel">
+        <div class="db-controls">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="db-search-input" placeholder="搜尋官方產品、廠商或係數關鍵字 (如: 高鐵, 鮮乳, 便當)...">
+          </div>
+          <div class="category-tabs" id="db-category-tabs">
+            <button class="cat-tab-btn active" data-cat="all">全部 <span class="badge" id="badge-all">0</span></button>
+            <button class="cat-tab-btn" data-cat="transportation">🚗 交通運輸 <span class="badge" id="badge-transport">0</span></button>
+            <button class="cat-tab-btn" data-cat="food">🍱 飲食習慣 <span class="badge" id="badge-food">0</span></button>
+            <button class="cat-tab-btn" data-cat="energy">⚡ 居家能源 <span class="badge" id="badge-energy">0</span></button>
+            <button class="cat-tab-btn" data-cat="waste_consumption">♻️ 消費廢棄物 <span class="badge" id="badge-waste">0</span></button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="db-table">
+            <thead>
+              <tr>
+                <th>項目名稱</th>
+                <th>排放係數 (coe)</th>
+                <th>單位 (Unit)</th>
+                <th>生活場景</th>
+                <th>聲明書號</th>
+                <th>審查機構 / 來源</th>
+              </tr>
+            </thead>
+            <tbody id="db-table-body">
+              <!-- Dynamically Populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 管線與 API 狀態 (Pipeline & API Health View) -->
+    <section id="tab-pipeline" class="tab-content">
+      <div class="pipeline-dashboard">
+        <div class="metrics-row">
+          <div class="metric-card glass-panel">
+            <div class="metric-icon"><i class="fa-solid fa-server"></i></div>
+            <div class="metric-info">
+              <span class="metric-label">官方 API 狀態</span>
+              <span class="metric-val text-emerald" id="pipe-api-status">🟢 正常連線</span>
+            </div>
+          </div>
+          <div class="metric-card glass-panel">
+            <div class="metric-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="metric-info">
+              <span class="metric-label">最新電力排碳係數</span>
+              <span class="metric-val" id="pipe-elec-val">0.467 kg/度</span>
+            </div>
+          </div>
+          <div class="metric-card glass-panel">
+            <div class="metric-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+            <div class="metric-info">
+              <span class="metric-label">標準數據庫總筆數</span>
+              <span class="metric-val" id="pipe-total-records">30 筆</span>
+            </div>
+          </div>
+          <div class="metric-card glass-panel">
+            <div class="metric-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="metric-info">
+              <span class="metric-label">上次更新時間</span>
+              <span class="metric-val" id="pipe-last-updated">2026-08-28</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Workflow Diagram & API Details -->
+        <div class="pipeline-details-grid">
+          <div class="glass-panel detail-card">
+            <h3><i class="fa-solid fa-link text-emerald"></i> 介接開放資料庫端點</h3>
+            <ul class="endpoint-list">
+              <li>
+                <div class="ep-badge">MOENV API</div>
+                <div class="ep-info">
+                  <strong>環境部氣候變遷署 - 產品碳足跡排放係數 (CFP_P_02)</strong>
+                  <code>https://data.moenv.gov.tw/api/v2/CFP_P_02</code>
+                </div>
+              </li>
+              <li>
+                <div class="ep-badge ep-moea">MOEA API</div>
+                <div class="ep-info">
+                  <strong>經濟部能源署 - 全台電力排碳係數 (0.467 kg CO2e/度)</strong>
+                  <code>https://www.moeaea.gov.tw/</code>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="glass-panel detail-card">
+            <h3><i class="fa-solid fa-robot text-emerald"></i> CI/CD 自動化與 Fallback 保障</h3>
+            <p>本專案每週一由 GitHub Actions 定時觸發 <code>scripts/fetch_official_data.py</code>，完成資料解析、關鍵字自動歸類與數據清洗。若 API 連線異常，系統會自動轉入 static fallback 機制。</p>
+            <div class="action-btn-group">
+              <button class="btn-primary" id="btn-trigger-sync">
+                <i class="fa-solid fa-rotate"></i> 模擬管線即時同步測試
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p>🌿 每日碳排放計算器 | 台灣官方開放資料標準數據庫 pipeline | 部署至 GitHub Actions</p>
+  </footer>
+
+  <script src="web/app.js"></script>
+</body>
+</html>

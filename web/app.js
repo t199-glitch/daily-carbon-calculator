@@ -50,19 +50,24 @@ function initNavTabs() {
 
 // Load Official JSON Database
 async function loadCarbonDatabase() {
-  try {
-    const res = await fetch('../data/carbon_database.json');
-    if (res.ok) {
-      carbonDatabase = await res.json();
-      console.log('✅ 成功載入官方標準碳足跡數據庫:', carbonDatabase);
-      updatePipelineStatusUI(carbonDatabase.metadata);
-      renderDatabaseTable();
-      updateCategoryBadges();
-      return;
+  const possiblePaths = ['./data/carbon_database.json', '../data/carbon_database.json'];
+  for (const path of possiblePaths) {
+    try {
+      const res = await fetch(path);
+      if (res.ok) {
+        carbonDatabase = await res.json();
+        console.log('✅ 成功載入官方標準碳足跡數據庫:', carbonDatabase);
+        updatePipelineStatusUI(carbonDatabase.metadata);
+        renderDatabaseTable();
+        updateCategoryBadges();
+        return;
+      }
+    } catch (err) {
+      // Continue to next path
     }
-  } catch (err) {
-    console.warn('⚠️ 載入 JSON 檔失敗，啟動內建 static 數據庫:', err);
   }
+  console.warn('⚠️ 載入 JSON 檔失敗，啟動內建 static 數據庫');
+
   
   // Use Fallback Mock Structure
   carbonDatabase = {
