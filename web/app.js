@@ -94,8 +94,8 @@ async function loadCarbonDatabase() {
 function initCalculatorListeners() {
   const inputIds = [
     'input-walk-bike', 'input-bus', 'input-mrt-train', 'input-scooter-ride', 'input-car-ride',
-    'input-school-bento', 'input-boba-drink', 'input-snack-bread', 'input-meat-snack',
-    'input-laptop', 'input-phone-charge', 'input-classroom-ac', 'input-study-lamp',
+    'input-breakfast', 'input-school-bento', 'input-instant-noodle', 'input-boba-drink', 'input-snack-bread', 'input-meat-snack',
+    'input-laptop', 'input-phone-charge', 'input-classroom-ac', 'input-classroom-lights',
     'input-exam-paper', 'input-plastic-bottle', 'input-hs-trash'
   ];
 
@@ -121,7 +121,9 @@ function calculateTotalFootprint() {
       (getVal('input-scooter-ride') * 0.26) +
       (getVal('input-car-ride') * 0.865),
     food:
+      (getVal('input-breakfast') * 0.650) +
       (getVal('input-school-bento') * 1.380) +
+      (getVal('input-instant-noodle') * 0.450) +
       (getVal('input-boba-drink') * 0.350) +
       (getVal('input-snack-bread') * 0.380) +
       (getVal('input-meat-snack') * 0.950),
@@ -129,12 +131,13 @@ function calculateTotalFootprint() {
       (getVal('input-laptop') * 0.023) +
       (getVal('input-phone-charge') * 0.015) +
       (getVal('input-classroom-ac') * 0.120) +
-      (getVal('input-study-lamp') * 0.020),
+      (getVal('input-classroom-lights') * 0.015),
     waste_consumption:
       (getVal('input-exam-paper') * 0.0092) +
       (getVal('input-plastic-bottle') * 0.085) +
       (getVal('input-hs-trash') * 0.210)
   };
+
 
   const total = Object.values(catEmissions).reduce((a, b) => a + b, 0);
 

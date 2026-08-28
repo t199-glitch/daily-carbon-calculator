@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>每日碳排放計算器 | 臺灣高中生專屬版</title>
-  <meta name="description" content="專為臺灣高中生設計的生活碳排放計算器，以直覺單位（趟、杯、個、張、小時）試算每日生活碳足跡。">
+  <meta name="description" content="專為臺灣高中生設計的生活碳排放計算器，以直覺單位（趟、份、個、杯、碗、張、小時）試算每日生活碳足跡。">
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,12 +115,28 @@
               </div>
               <div class="input-row-grid">
                 <div class="input-field">
+                  <label for="input-breakfast">🥪 早餐 (蛋餅/三明治/豆漿) (份)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-breakfast" min="0" value="1" step="1">
+                    <span class="unit-tag">份</span>
+                  </div>
+                  <span class="hint-text">約 0.65 kg/份</span>
+                </div>
+                <div class="input-field">
                   <label for="input-school-bento">🍱 學校便當/營養午餐 (個)</label>
                   <div class="input-wrapper">
                     <input type="number" id="input-school-bento" min="0" value="1" step="1">
                     <span class="unit-tag">個</span>
                   </div>
                   <span class="hint-text">含主菜排骨/雞腿</span>
+                </div>
+                <div class="input-field">
+                  <label for="input-instant-noodle">🍜 宵夜 / K書泡麵 (碗)</label>
+                  <div class="input-wrapper">
+                    <input type="number" id="input-instant-noodle" min="0" value="0" step="1">
+                    <span class="unit-tag">碗</span>
+                  </div>
+                  <span class="hint-text">約 0.45 kg/碗</span>
                 </div>
                 <div class="input-field">
                   <label for="input-boba-drink">🥤 珍珠奶茶/手搖飲/超商飲料 (杯)</label>
@@ -133,7 +149,7 @@
                 <div class="input-field">
                   <label for="input-snack-bread">🥐 合作社麵包 / 飯糰 (個)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-snack-bread" min="0" value="1" step="1">
+                    <input type="number" id="input-snack-bread" min="0" value="0" step="1">
                     <span class="unit-tag">個</span>
                   </div>
                   <span class="hint-text">約 0.38 kg/個</span>
@@ -181,11 +197,12 @@
                   <span class="hint-text">學生分攤平均約 0.12 kg/hr</span>
                 </div>
                 <div class="input-field">
-                  <label for="input-study-lamp">💡 房間檯燈晚自習時間 (小時)</label>
+                  <label for="input-classroom-lights">💡 教室電燈/日光燈開燈時間 (小時)</label>
                   <div class="input-wrapper">
-                    <input type="number" id="input-study-lamp" min="0" value="2" step="0.5">
+                    <input type="number" id="input-classroom-lights" min="0" value="7" step="1">
                     <span class="unit-tag">小時</span>
                   </div>
+                  <span class="hint-text">全班分攤約 0.015 kg/hr</span>
                 </div>
               </div>
             </div>
@@ -255,7 +272,7 @@
             <div class="category-bars">
               <div class="cat-bar-item">
                 <div class="cat-bar-header">
-                  <span>🎒 上下学交通</span>
+                  <span>🎒 上下學交通</span>
                   <span id="val-cat-transport">0.00 kg</span>
                 </div>
                 <div class="bar-track"><div class="bar-fill bg-transport" id="bar-transport" style="width: 0%;"></div></div>
