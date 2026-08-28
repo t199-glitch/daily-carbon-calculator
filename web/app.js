@@ -95,7 +95,7 @@ function initCalculatorListeners() {
   const inputIds = [
     'input-walk-bike', 'input-bus', 'input-mrt-train', 'input-scooter-ride', 'input-car-ride',
     'input-breakfast', 'input-school-bento', 'input-instant-noodle', 'input-boba-drink', 'input-snack-bread', 'input-meat-snack',
-    'input-laptop', 'input-phone-charge', 'input-classroom-ac', 'input-classroom-lights',
+    'input-laptop', 'input-phone-charge', 'input-classroom-ac', 'input-classroom-fan', 'input-classroom-lights',
     'input-exam-paper', 'input-plastic-bottle', 'input-hs-trash'
   ];
 
@@ -131,12 +131,14 @@ function calculateTotalFootprint() {
       (getVal('input-laptop') * 0.023) +
       (getVal('input-phone-charge') * 0.015) +
       (getVal('input-classroom-ac') * 0.120) +
+      (getVal('input-classroom-fan') * 0.003) +
       (getVal('input-classroom-lights') * 0.015),
     waste_consumption:
       (getVal('input-exam-paper') * 0.0092) +
       (getVal('input-plastic-bottle') * 0.085) +
       (getVal('input-hs-trash') * 0.210)
   };
+
 
 
   const total = Object.values(catEmissions).reduce((a, b) => a + b, 0);
