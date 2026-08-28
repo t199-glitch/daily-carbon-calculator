@@ -1,0 +1,365 @@
+{
+  "metadata": {
+    "title": "每日碳排放計算器 - 官方標準碳足跡數據庫",
+    "version": "1.0.0",
+    "last_updated": "2026-08-28T12:00:00Z",
+    "total_items": 30,
+    "electricity_coefficient": 0.467,
+    "electricity_unit": "kg CO2e / 度 (kWh)",
+    "historical_electricity_coefficients": {
+      "2024": 0.467,
+      "2023": 0.495,
+      "2022": 0.495,
+      "2021": 0.509,
+      "2020": 0.502
+    },
+    "data_sources": [
+      {
+        "name": "環境部氣候變遷署 - 產品碳足跡排放係數 (CFP_P_02)",
+        "url": "https://data.moenv.gov.tw/dataset/detail/CFP_P_02"
+      },
+      {
+        "name": "經濟部能源署 - 電力排碳係數",
+        "url": "https://www.moeaea.gov.tw/"
+      }
+    ],
+    "category_summary": {
+      "transportation": 8,
+      "food": 10,
+      "energy": 4,
+      "waste_consumption": 8
+    }
+  },
+  "categories": {
+    "transportation": {
+      "name_zh": "交通運輸",
+      "icon": "🚗",
+      "count": 8
+    },
+    "food": {
+      "name_zh": "飲食習慣",
+      "icon": "🍱",
+      "count": 10
+    },
+    "energy": {
+      "name_zh": "居家能源",
+      "icon": "⚡",
+      "count": 4
+    },
+    "waste_consumption": {
+      "name_zh": "消費與廢棄物",
+      "icon": "♻️",
+      "count": 8
+    }
+  },
+  "items": [
+    {
+      "id": "fb-001",
+      "name": "台灣高鐵 (每人公里)",
+      "coe": 0.034,
+      "unit": "kg CO2e/人-公里",
+      "category": "transportation",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-001",
+      "company": "環境部/高鐵局",
+      "source": "環境部/高鐵局"
+    },
+    {
+      "id": "fb-002",
+      "name": "台北捷運 (每人公里)",
+      "coe": 0.042,
+      "unit": "kg CO2e/人-公里",
+      "category": "transportation",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-002",
+      "company": "台北捷運公司",
+      "source": "台北捷運公司"
+    },
+    {
+      "id": "fb-003",
+      "name": "台鐵電聯車 (每人公里)",
+      "coe": 0.055,
+      "unit": "kg CO2e/人-公里",
+      "category": "transportation",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-003",
+      "company": "台灣鐵路管理局",
+      "source": "台灣鐵路管理局"
+    },
+    {
+      "id": "fb-004",
+      "name": "市區公車 (每人公里)",
+      "coe": 0.068,
+      "unit": "kg CO2e/人-公里",
+      "category": "transportation",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-004",
+      "company": "環境部開放資料",
+      "source": "環境部開放資料"
+    },
+    {
+      "id": "fb-005",
+      "name": "燃油機車 (每公里)",
+      "coe": 0.052,
+      "unit": "kg CO2e/公里",
+      "category": "transportation",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-005",
+      "company": "環境部開放資料",
+      "source": "環境部開放資料"
+    },
+    {
+      "id": "fb-006",
+      "name": "電動機車 (每公里)",
+      "coe": 0.022,
+      "unit": "kg CO2e/公里",
+      "category": "transportation",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-006",
+      "company": "環境部開放資料",
+      "source": "環境部開放資料"
+    },
+    {
+      "id": "fb-007",
+      "name": "汽油轎車 (1.6L-2.0L每公里)",
+      "coe": 0.173,
+      "unit": "kg CO2e/公里",
+      "category": "transportation",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-007",
+      "company": "環境部開放資料",
+      "source": "環境部開放資料"
+    },
+    {
+      "id": "fb-008",
+      "name": "國內線航班 (每人公里)",
+      "coe": 0.22,
+      "unit": "kg CO2e/人-公里",
+      "category": "transportation",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-008",
+      "company": "國際民航組織/環境部",
+      "source": "國際民航組織/環境部"
+    },
+    {
+      "id": "fb-010",
+      "name": "全脂鮮乳 (1000ml)",
+      "coe": 1.62,
+      "unit": "kg CO2e/瓶",
+      "category": "food",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-010",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-011",
+      "name": "包裝礦泉水 (600ml)",
+      "coe": 0.18,
+      "unit": "kg CO2e/瓶",
+      "category": "food",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-011",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-012",
+      "name": "白米 (1公斤)",
+      "coe": 1.45,
+      "unit": "kg CO2e/公斤",
+      "category": "food",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-012",
+      "company": "農委會/氣候變遷署",
+      "source": "農委會/氣候變遷署"
+    },
+    {
+      "id": "fb-013",
+      "name": "傳統豆腐 (400g)",
+      "coe": 0.52,
+      "unit": "kg CO2e/盒",
+      "category": "food",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-013",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-014",
+      "name": "現煮美式咖啡 (350ml)",
+      "coe": 0.24,
+      "unit": "kg CO2e/杯",
+      "category": "food",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-014",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-015",
+      "name": "現煮拿鐵咖啡 (350ml)",
+      "coe": 0.55,
+      "unit": "kg CO2e/杯",
+      "category": "food",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-015",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-016",
+      "name": "台式排骨便當 (1個)",
+      "coe": 1.38,
+      "unit": "kg CO2e/個",
+      "category": "food",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-016",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-017",
+      "name": "雞蛋 (10顆/盒)",
+      "coe": 0.95,
+      "unit": "kg CO2e/盒",
+      "category": "food",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-017",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-018",
+      "name": "國產牛肉 (1公斤)",
+      "coe": 12.5,
+      "unit": "kg CO2e/公斤",
+      "category": "food",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-018",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-019",
+      "name": "國產豬肉 (1公斤)",
+      "coe": 3.8,
+      "unit": "kg CO2e/公斤",
+      "category": "food",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-019",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-020",
+      "name": "台電發電電力 (1度/kWh)",
+      "coe": 0.467,
+      "unit": "kg CO2e/度",
+      "category": "energy",
+      "review_date": "2026-08-28",
+      "statement_no": "MOEA-ELE-2024",
+      "company": "經濟部能源署 (最新公告)",
+      "source": "經濟部能源署 (最新公告)"
+    },
+    {
+      "id": "fb-021",
+      "name": "自來水 (1立方公尺/度)",
+      "coe": 0.156,
+      "unit": "kg CO2e/度",
+      "category": "energy",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-021",
+      "company": "台灣自來水公司",
+      "source": "台灣自來水公司"
+    },
+    {
+      "id": "fb-022",
+      "name": "天然氣 (1立方公尺)",
+      "coe": 2.1,
+      "unit": "kg CO2e/立方公尺",
+      "category": "energy",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-022",
+      "company": "台灣中油公司",
+      "source": "台灣中油公司"
+    },
+    {
+      "id": "fb-023",
+      "name": "液化石油氣/桶裝瓦斯 (1公斤)",
+      "coe": 3.12,
+      "unit": "kg CO2e/公斤",
+      "category": "energy",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-023",
+      "company": "環境部開放資料",
+      "source": "環境部開放資料"
+    },
+    {
+      "id": "fb-030",
+      "name": "A4 影印紙 (500張/包)",
+      "coe": 4.6,
+      "unit": "kg CO2e/包",
+      "category": "waste_consumption",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-030",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-031",
+      "name": "抽取式衛生紙 (100抽/包)",
+      "coe": 0.31,
+      "unit": "kg CO2e/包",
+      "category": "waste_consumption",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-031",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-032",
+      "name": "寶特瓶回收處理 (1公斤)",
+      "coe": 0.085,
+      "unit": "kg CO2e/公斤",
+      "category": "waste_consumption",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-032",
+      "company": "環境部資源循環署",
+      "source": "環境部資源循環署"
+    },
+    {
+      "id": "fb-033",
+      "name": "一般生活垃圾焚化處理 (1公斤)",
+      "coe": 0.42,
+      "unit": "kg CO2e/公斤",
+      "category": "waste_consumption",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-033",
+      "company": "環境部資源循環署",
+      "source": "環境部資源循環署"
+    },
+    {
+      "id": "fb-034",
+      "name": "洗髮精 (500ml)",
+      "coe": 1.15,
+      "unit": "kg CO2e/瓶",
+      "category": "waste_consumption",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-034",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    },
+    {
+      "id": "fb-035",
+      "name": "純棉短袖 T-Shirt (1件)",
+      "coe": 3.5,
+      "unit": "kg CO2e/件",
+      "category": "waste_consumption",
+      "review_date": "2026-08-28",
+      "statement_no": "CFP-FB-035",
+      "company": "氣候變遷署審查通過",
+      "source": "氣候變遷署審查通過"
+    }
+  ]
+}

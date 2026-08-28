@@ -1,0 +1,49 @@
+name: 🌿 Sync Official Taiwan Carbon Footprint Data
+
+on:
+  schedule:
+    # 每週一 00:00 UTC (台北時間 08:00 AM) 自動執行
+    - cron: '0 0 * * 1'
+  workflow_dispatch: # 支援在 GitHub 介面上手動點擊觸發
+
+jobs:
+  sync-carbon-database:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 📦 Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: 🔄 Execute Carbon Data Pipeline
+        env:
+          MOENV_API_KEY: ${{ secrets.MOENV_API_KEY }}
+        run: |
+          python scripts/fetch_official_data.py --output data/carbon_database.json
+
+      - name: 📤 Commit & Push Updated Database if Changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add data/carbon_database.json
+          
+          if git diff --staged --quiet; then
+            echo "ℹ️ No changes detected in carbon_database.json. Skipping commit."
+          else
+            echo "🚀 Data changes detected! Committing and pushing..."
+            git commit -m "chore(data): 🌿 auto-update official carbon emission factors [skip ci]"
+            git push origin main
+          fi
